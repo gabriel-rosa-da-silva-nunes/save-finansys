@@ -2,44 +2,36 @@
   <div>
     <v-container>
       <v-row>
-        <v-col sm="12">
-          <v-banner class="elevation-2">
-            <h3><i class="fas fa-chart-line" style="margin-right:10px;"></i> Dashboard</h3>
-          </v-banner>
-
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col sm="4">
+        <v-col sm="12" md="4">
           <DashBanner icon="fas fa-dollar-sign" title="Ganhos" :value="this.somaGanhos" color="green" />
         </v-col>
-        <v-col sm="4">
+        <v-col sm="12" md="4">
           <DashBanner icon="fas fa-hand-holding-usd" title="Despesas" :value="this.somaDespesas"  color="red"/>
         </v-col>
-        <v-col sm="4">
+        <v-col sm="12" md="4">
           <DashBanner icon="fas fa-book-dead" title="Dívidas" :value="0" color="orange darken-1" />
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="6">
+        <v-col sm="12" md="12" lg="6">
           <v-card class="elevation-2">
             <v-card-title class="title">
               Ganhos por tipo
             </v-card-title>
             <v-divider></v-divider>
-            <v-card-text>
+            <v-card-text >
               <div id="chartdiv" style="height:250px;width:100%;"></div>
 
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col sm="6">
+        <v-col sm="12" md="12" lg="6">
           <v-card class="elevation-2">
             <v-card-title class="title">
               Despesas por tipo
             </v-card-title>
             <v-divider></v-divider>
-            <v-card-text>
+            <v-card-text >
               <div id="chartdiv2" style="height:250px;width:100%;"></div>
 
             </v-card-text>
@@ -146,7 +138,6 @@
 
         // Add data
         chart.data = Object.assign(new Array,this.ganhos);
-
         // Set inner radius
         chart.innerRadius = am4core.percent(50);
 
@@ -155,6 +146,7 @@
         pieSeries.dataFields.value = "valor";
         pieSeries.dataFields.category = "tipo";
 
+        chart.responsive.enabled = true;
         // This creates initial animation
         pieSeries.hiddenState.properties.opacity = 1;
         pieSeries.hiddenState.properties.endAngle = -90;
@@ -168,7 +160,6 @@
 
         // Create chart instance
         let chart = am4core.create("chartdiv2", am4charts.PieChart);
-
         // Add data
         chart.data = Object.assign(new Array,this.despesas);
 
@@ -180,6 +171,7 @@
         pieSeries.dataFields.value = "valor";
         pieSeries.dataFields.category = "tipo";
 
+        chart.responsive.enabled = true;
         // This creates initial animation
         pieSeries.hiddenState.properties.opacity = 1;
         pieSeries.hiddenState.properties.endAngle = -90;

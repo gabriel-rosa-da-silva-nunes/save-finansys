@@ -4,13 +4,6 @@
         <v-container>
             <v-row>
                 <v-col sm="12">
-                    <v-banner class="elevation-2">
-                        <h3><i class="fas fa-hand-holding-usd" style="margin-right:10px;"></i>Cadastro de Despesas</h3>
-                    </v-banner>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col sm="12">
                     <v-data-table
                         :headers="listaTabelaHead"
                         :items="listaDespesas"
@@ -66,7 +59,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        <v-btn bottom right fab style="position:absolute;bottom:15px;right:15px;" @click="abrirModal('incluir')" color="green" dark>
+        <v-btn bottom right fab style="position:absolute;bottom:25px;right:25px;" @click="abrirModal('incluir')" color="green" dark>
             <i class="fas fa-plus"></i>
         </v-btn>
     </div>

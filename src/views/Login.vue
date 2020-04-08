@@ -14,6 +14,7 @@
                                         <v-text-field
                                             label="Email"
                                             filled
+                                            v-model="email"
                                             solo-inverted
                                             prepend-inner-icon="mdi-email-newsletter"
                                         >
@@ -25,6 +26,7 @@
                                         <v-text-field
                                             label="Password"
                                             type="password"
+                                            v-model="password"
                                             filled
                                             solo-inverted
                                             prepend-inner-icon="mdi-eye"
@@ -35,7 +37,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col sm="12">
-                                        <v-btn color="green" style="width:100%;" dark>
+                                        <v-btn color="green" style="width:100%;" dark @click="login">
                                             login
                                         </v-btn>
                                     </v-col>
@@ -51,6 +53,32 @@
         </v-container>
     </div>
 </template>
+
+<script>
+import Firebase from 'firebase';
+
+export default {
+    data: () => ({
+        email:'',
+        password: ''
+    }),
+    methods: {
+        login() {
+            Firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(
+                result => {
+                    this.$store.commit('changeLogin',this.email);
+                    this.$router.push({path:'/'});
+                }
+            ).catch(
+                error => {
+                    this.$toastr.e("Deu errado");
+                    console.log(error);
+                }
+            )
+        }
+    }
+}
+</script>
 
 <style scoped>
     .allscreen {
