@@ -16,9 +16,6 @@
                     Save Finansys
                 </v-list-item-title>
             </v-list-item-content>
-            <v-list-item-action>
-                <v-btn text fab small @click="mudarTema"><i style="font-size:20px;" class="fas fa-adjust"></i></v-btn>
-            </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
         <v-list nav>
@@ -50,12 +47,6 @@ export default {
             {title: "Dívidas",icon:"fas fa-book-dead",link:"/dividas"}
         ]
     }),
-    methods: {
-        mudarTema() {
-            this.$store.commit('changeTheme');
-            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-        }
-    },
 }
 </script>
 

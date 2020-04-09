@@ -36,9 +36,14 @@
                                     </v-col>
                                 </v-row>
                                 <v-row>
-                                    <v-col sm="12">
+                                    <v-col sm="12" md="6">
                                         <v-btn color="green" style="width:100%;" dark @click="login">
                                             login
+                                        </v-btn>
+                                    </v-col>
+                                    <v-col sm="12" md="6">
+                                        <v-btn color="white" style="width:100%;" light @click="loginGoogle">
+                                            <img src="../assets/icon-google.png" width="20" height="20" style="margin-right:10px;"/> login Google
                                         </v-btn>
                                     </v-col>
                                 </v-row>
@@ -67,14 +72,32 @@ export default {
             Firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(
                 result => {
                     this.$store.commit('changeLogin',this.email);
+                    this.$store.commit('changeTipoLogin','email');
                     this.$router.push({path:'/'});
                 }
             ).catch(
                 error => {
-                    this.$toastr.e("Deu errado");
+                    this.$toastr.e(error.message);
                     console.log(error);
                 }
             )
+        },
+        loginGoogle() {
+            let provider = new Firebase.auth.GoogleAuthProvider();
+            Firebase.auth().signInWithPopup(provider).then(
+                (resultado) => {
+                    console.log(resultado);
+                    this.$store.commit('changeLogin',resultado.user.email);
+                    this.$store.commit('changeTipoLogin','google');
+                    this.$store.commit('changePhoto',resultado.user.photoURL);
+                    this.$store.commit('changeName',resultado.user.displayName);
+                    this.$router.push({path:'/'});
+                }
+            ).catch(
+                error => {
+                    this.$toastr.e(error.message);
+                }
+            );
         }
     }
 }

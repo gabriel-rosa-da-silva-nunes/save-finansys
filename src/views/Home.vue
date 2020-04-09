@@ -13,7 +13,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="12" lg="6">
+        <v-col cols="12" md="6" lg="6">
           <v-card class="elevation-2">
             <v-card-title class="title">
               Ganhos por tipo
@@ -21,11 +21,10 @@
             <v-divider></v-divider>
             <v-card-text >
               <div id="chartdiv" style="height:250px;width:100%;"></div>
-
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col sm="12" md="12" lg="6">
+        <v-col cols="12" md="6" lg="6">
           <v-card class="elevation-2">
             <v-card-title class="title">
               Despesas por tipo
@@ -33,7 +32,6 @@
             <v-divider></v-divider>
             <v-card-text >
               <div id="chartdiv2" style="height:250px;width:100%;"></div>
-
             </v-card-text>
           </v-card>
         </v-col>

@@ -6,7 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     dark: false,
-    emailLogin:''
+    tipoLogin: '',
+    userLogin:'',
+    userLinkFoto:'',
+    userName: '',
   },
   mutations: {
     changeTheme(state) {
@@ -14,6 +17,15 @@ export default new Vuex.Store({
     },
     changeLogin(state,email) {
       state.emailLogin = email;
+    },
+    changePhoto(state,linkPhoto) {
+      state.userLinkFoto = linkPhoto;
+    },
+    changeName(state,name) {
+      state.userName = name;
+    },
+    changeTipoLogin(state,tipo) {
+      state.tipoLogin = tipo;
     }
   },
   actions: {

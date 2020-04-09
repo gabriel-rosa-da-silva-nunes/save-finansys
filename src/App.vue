@@ -12,9 +12,26 @@
           </v-toolbar-title>      
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn icon >
-              <v-icon>mdi-cog</v-icon>
-            </v-btn>
+            <UserChip style="margin-right:10px;"/>
+            <v-menu bottom left>
+              <template v-slot:activator="{ on }">
+                <v-btn icon v-on="on" >
+                  <v-icon>mdi-cog</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item>
+                  <v-btn text @click="mudarTema" style="width:100%;">
+                    <v-icon>fas fa-adjust</v-icon><v-spacer></v-spacer> Tema
+                  </v-btn>
+                </v-list-item>
+                <v-list-item>
+                  <v-btn text @click="deslogar">
+                    <v-icon>mdi-logout</v-icon><v-spacer></v-spacer>  deslogar
+                  </v-btn>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-toolbar-items>
         </v-toolbar>
         <v-container fluid >
@@ -32,11 +49,14 @@
 
 <script>
 import Menu from '../src/components/Menu';
+import Firebase from 'firebase';
+import UserChip from '../src/components/UserChip';
 
 export default {
   name: 'App',
   components: {
-    Menu
+    Menu,
+    UserChip
   },
   created() {
     console.log(this.$route);
@@ -44,6 +64,25 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    deslogar() {
+      Firebase.auth().signOut().then(
+        () => {
+          this.$router.push({
+            path: '/login'
+          });
+        }
+      ).catch(
+        error => {
+          this.$toastr.e('Houve um erro ao deslogar!');
+        }
+      )
+    },
+    mudarTema() {
+      this.$store.commit('changeTheme');
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    }
+  }
 };
 </script>
 
