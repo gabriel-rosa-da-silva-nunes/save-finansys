@@ -2,14 +2,27 @@
   "name": "vue-save-finansys",
   "version": "0.1.0",
   "private": true,
+  "description": "This example is so cool.",
+  "main": "server.js",
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "jane-doe",
+  "license": "MIT",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.13",
     "core-js": "^2.6.5",
+    "express": "^4.17.1",
     "firebase": "^7.13.2",
     "register-service-worker": "^1.6.2",
     "v-currency-field": "^3.0.7",

@@ -16,7 +16,7 @@ export default new Vuex.Store({
       state.dark = !state.dark;
     },
     changeLogin(state,email) {
-      state.emailLogin = email;
+      state.userLogin = email;
     },
     changePhoto(state,linkPhoto) {
       state.userLinkFoto = linkPhoto;

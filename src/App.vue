@@ -99,6 +99,13 @@ export default {
 
   .grow {
     flex-grow: 1;
+    
+  }
+
+  @media (max-width:768px) {
+    .grow {
+      min-width: calc(100% - 56px);
+    }
   }
   .allheight {
     max-height: 100vh;

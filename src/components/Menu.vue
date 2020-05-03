@@ -3,7 +3,7 @@
         permanent 
         color="darken-1" 
         style="height:100vh;" 
-        class="blueGradient"
+        class="blueGradient hoverMenu"
         dark 
         :mini-variant="true"
         :expand-on-hover="true">

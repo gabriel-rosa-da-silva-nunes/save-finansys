@@ -26,7 +26,7 @@ export default {
             return this.$store.state.userName;
         },
         userEmail: function () {
-            return this.$store.state.emailLogin;
+            return this.$store.state.userLogin;
         },
         tipoLogin: function () {
             return this.$store.state.tipoLogin;
