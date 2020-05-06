@@ -45,6 +45,9 @@
           <v-btn @click="openMenu = true" icon >
             <v-icon>mdi-menu</v-icon>
           </v-btn>    
+          <v-toolbar-title class="title titlePageTop">
+              {{ this.$route.name }}
+          </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items >
             <UserChip style="margin-right:10px;"/>
@@ -70,7 +73,7 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-container fluid >
-            <v-row>
+            <v-row class="titlePageBottom">
                 <v-col sm="12">
                     <div class="title" style="margin-left:10px">
                         {{ this.$route.name }}
@@ -156,7 +159,23 @@ export default {
     .grow {
       min-width: calc(100% - 56px);
     }
+    .titlePageTop {
+        display: none;
+    }
+    .titlePageBottom {
+        display:block;
+    }
   }
+
+  @media (min-width: 769px) {
+    .titlePageTop {
+        display: block;
+    }
+    .titlePageBottom {
+        display:none;
+    }
+  } 
+
   .allheight {
     max-height: 100vh;
     overflow-y: auto;
