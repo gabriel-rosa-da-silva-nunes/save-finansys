@@ -45,7 +45,7 @@
           <v-btn @click="openMenu = true" text fab>
             <v-icon>mdi-menu</v-icon>
           </v-btn>
-          <v-toolbar-title class="title">
+          <v-toolbar-title class="title" style="display:block;">
             {{ this.$route.name }}  
           </v-toolbar-title>      
           <v-spacer></v-spacer>
@@ -106,6 +106,7 @@ export default {
       {title: "Dashboard",icon:"fas fa-chart-line",link:"/"},
       {title: "Ganhos", icon:"fas fa-dollar-sign",link:"/ganhos"},
       {title: "Despesas",icon:"fas fa-hand-holding-usd",link:"/despesas"},
+      {title: "Cartões",icon:"fas fa-credit-card",link:"/cartoes"},
       {title: "Dívidas",icon:"fas fa-book-dead",link:"/dividas"}
     ]
   }),

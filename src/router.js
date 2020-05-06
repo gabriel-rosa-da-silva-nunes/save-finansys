@@ -30,6 +30,11 @@ const router =  new Router({
       component: () => import('./views/Despesas.vue')
     },
     {
+        path:'/cartoes',
+        name:'Cadastro de Cartões',
+        component: () => import('./views/Cartoes.vue')
+    },
+    {
       path: '/dividas',
       name: 'Cadastro de Dívidas',
       component: () => import('./views/Dividas.vue')
