@@ -41,15 +41,12 @@
         </v-list>
     </v-navigation-drawer>
       <div :class="this.$vuetify.theme.dark ? 'grow allheight grey darken-3':'grow allheight grey lighten-2'">
-        <v-toolbar dense class="toolbarFinansys">
-          <v-btn @click="openMenu = true" text fab>
+        <v-toolbar  flat class="toolbarFinansys">
+          <v-btn @click="openMenu = true" icon >
             <v-icon>mdi-menu</v-icon>
-          </v-btn>
-          <v-toolbar-title class="title" style="display:block;">
-            {{ this.$route.name }}  
-          </v-toolbar-title>      
+          </v-btn>    
           <v-spacer></v-spacer>
-          <v-toolbar-items>
+          <v-toolbar-items >
             <UserChip style="margin-right:10px;"/>
             <v-menu bottom left>
               <template v-slot:activator="{ on }">
@@ -73,6 +70,13 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-container fluid >
+            <v-row>
+                <v-col sm="12">
+                    <div class="title" style="margin-left:10px">
+                        {{ this.$route.name }}
+                    </div>
+                </v-col>
+            </v-row>
           <v-row>
             <v-col sm="12" style="padding:0px;">
               <router-view/>
