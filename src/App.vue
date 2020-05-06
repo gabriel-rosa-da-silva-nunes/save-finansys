@@ -4,9 +4,47 @@
       <router-view/>
     </div>
     <div v-else class="allscreen">
-      <Menu/>
+      <v-navigation-drawer 
+        temporary
+        
+        absolute
+        v-model="openMenu"
+        color="darken-1" 
+        class="blueGradient"
+        dark >
+        <v-list-item style="padding:0 9px !important;">
+            <v-list-item-avatar>
+                <img src="./assets/money.png"/>
+            </v-list-item-avatar>
+            <v-list-item-content>
+                <v-list-item-title class="title">
+                    Save Finansys
+                </v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list nav>
+            <router-link  v-for="item in menuItems" :to="item.link"
+                :key="item.icon" tag="span">
+                <v-list-item link>
+                    <v-list-item-icon >
+                        <i style="font-size:20px;margin-left:5px;" :class="item.icon"></i>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            {{ item.title }}
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </router-link>
+            
+        </v-list>
+    </v-navigation-drawer>
       <div :class="this.$vuetify.theme.dark ? 'grow allheight grey darken-3':'grow allheight grey lighten-2'">
         <v-toolbar dense class="toolbarFinansys">
+          <v-btn @click="openMenu = true" text fab>
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
           <v-toolbar-title class="title">
             {{ this.$route.name }}  
           </v-toolbar-title>      
@@ -44,6 +82,7 @@
         </v-container>
       </div>
     </div>
+    
   </v-app>
 </template>
 
@@ -62,7 +101,13 @@ export default {
     console.log(this.$route);
   },
   data: () => ({
-    //
+    openMenu: false,
+    menuItems: [
+      {title: "Dashboard",icon:"fas fa-chart-line",link:"/"},
+      {title: "Ganhos", icon:"fas fa-dollar-sign",link:"/ganhos"},
+      {title: "Despesas",icon:"fas fa-hand-holding-usd",link:"/despesas"},
+      {title: "Dívidas",icon:"fas fa-book-dead",link:"/dividas"}
+    ]
   }),
   methods: {
     deslogar() {
@@ -115,5 +160,12 @@ export default {
     background-color:transparent !important;
     box-shadow: none !important;
     height:60px;
+  }
+
+  .blueGradient {
+    background-image: linear-gradient(to top, #30cfd0 0%, #080b67 100%);
+  }
+  .toBottomBlueGradient {
+    background-image: linear-gradient(to left, #30cfd0 0%, #080b67 100%);
   }
 </style>
