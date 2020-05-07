@@ -37,7 +37,7 @@
             </v-row>
         </v-container>
 
-        <v-dialog v-model="modal">
+        <v-dialog v-model="modal" width="500px">
             <v-card>
                 <v-card-title>
                     Incluir Novo Cartão

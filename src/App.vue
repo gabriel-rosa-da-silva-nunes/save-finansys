@@ -5,10 +5,10 @@
     </div>
     <div v-else class="allscreen">
       <v-navigation-drawer 
-        temporary
-        
-        absolute
-        v-model="openMenu"
+        v-if="openMiniMenu"
+        mini-variant
+        expand-on-hover
+        v-model="openMiniMenu"
         color="darken-1" 
         class="blueGradient"
         dark >
@@ -42,7 +42,7 @@
     </v-navigation-drawer>
       <div :class="this.$vuetify.theme.dark ? 'grow allheight grey darken-3':'grow allheight grey lighten-2'">
         <v-toolbar  flat class="toolbarFinansys">
-          <v-btn @click="openMenu = true" icon >
+          <v-btn v-if="menuConfig.menuIcon" @click="openMenu = true" icon >
             <v-icon>mdi-menu</v-icon>
           </v-btn>    
           <v-toolbar-title class="title titlePageTop">
@@ -89,7 +89,41 @@
         </v-container>
       </div>
     </div>
-    
+    <v-navigation-drawer 
+        temporary
+        absolute
+        v-model="openMenu"
+        color="darken-1" 
+        class="blueGradient"
+        dark >
+        <v-list-item style="padding:0 9px !important;">
+            <v-list-item-avatar>
+                <img src="./assets/money.png"/>
+            </v-list-item-avatar>
+            <v-list-item-content>
+                <v-list-item-title class="title">
+                    Save Finansys
+                </v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list nav>
+            <router-link  v-for="item in menuItems" :to="item.link"
+                :key="item.icon" tag="span">
+                <v-list-item link>
+                    <v-list-item-icon >
+                        <i style="font-size:20px;margin-left:5px;" :class="item.icon"></i>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            {{ item.title }}
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </router-link>
+            
+        </v-list>
+    </v-navigation-drawer>
   </v-app>
 </template>
 
@@ -105,17 +139,27 @@ export default {
     UserChip
   },
   created() {
+      this.configMenu()
+      window.addEventListener('resize',this.windowChange)
     console.log(this.$route);
   },
   data: () => ({
     openMenu: false,
+    openMiniMenu:false,
     menuItems: [
       {title: "Dashboard",icon:"fas fa-chart-line",link:"/"},
       {title: "Ganhos", icon:"fas fa-dollar-sign",link:"/ganhos"},
       {title: "Despesas",icon:"fas fa-hand-holding-usd",link:"/despesas"},
       {title: "Cartões",icon:"fas fa-credit-card",link:"/cartoes"},
       {title: "Dívidas",icon:"fas fa-book-dead",link:"/dividas"}
-    ]
+    ],
+    menuConfig:{
+        temporary: false,
+        absolute:false,
+        miniVariant:false,
+        expandOnHover:false,
+        menuIcon:false,
+    }
   }),
   methods: {
     deslogar() {
@@ -130,6 +174,21 @@ export default {
           this.$toastr.e('Houve um erro ao deslogar!');
         }
       )
+    },
+    windowChange(event) {
+        this.configMenu();
+    },
+    configMenu() {
+        let width = window.innerWidth;
+        console.log(width);
+        if (width > 768) {
+            this.openMenu = false;
+            this.openMiniMenu = true;
+            this.menuConfig.menuIcon = false;
+        } else {
+            this.openMiniMenu = false;
+            this.menuConfig.menuIcon = true;
+        }
     },
     mudarTema() {
       this.$store.commit('changeTheme');
